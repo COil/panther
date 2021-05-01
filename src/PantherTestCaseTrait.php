@@ -73,7 +73,7 @@ trait PantherTestCaseTrait
         'router' => '',
         'external_base_uri' => null,
         'readinessPath' => '',
-        'browser' => PantherTestCase::CHROME,
+        'browser' => PantherTestCase::FIREFOX,
     ];
 
     public static function tearDownAfterClass(): void
@@ -149,7 +149,7 @@ trait PantherTestCaseTrait
      */
     protected static function createPantherClient(array $options = [], array $kernelOptions = [], array $managerOptions = []): PantherClient
     {
-        $browser = ($options['browser'] ?? self::$defaultOptions['browser'] ?? static::CHROME);
+        $browser = ($options['browser'] ?? self::$defaultOptions['browser'] ?? static::FIREFOX);
         $callGetClient = \is_callable([self::class, 'getClient']) && (new \ReflectionMethod(self::class, 'getClient'))->isStatic();
         if (null !== self::$pantherClient) {
             $browserManager = self::$pantherClient->getBrowserManager();
